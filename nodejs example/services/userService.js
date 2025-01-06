@@ -1,6 +1,6 @@
 // 📁 src/services/userService.js
-import { User } from '../models/User';
-import { isValidEmail, isValidName } from './validation';
+import { User } from '../models/User.js';
+import { isValidEmail, isValidName } from './validation.js';
 
 class UserService {
   constructor() {
@@ -15,7 +15,8 @@ class UserService {
       throw new Error('Invalid email');
     }
 
-    const id = Date.now().toString();
+    const id =
+      Date.now().toString() + (Array.from(this.users.values()).length + 1);
     const user = new User(id, name, email);
     this.users.set(id, user);
     return user;
